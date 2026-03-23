@@ -36,10 +36,12 @@ pip install pyinstaller
 2. Build the app:
 
 ```bash
-pyinstaller --onefile --windowed --name InstagramDownloader download_instagram.py
+pyinstaller InstagramDownloader.spec
 ```
 
 3. The executable will be created in the `dist` folder.
+
+If Selenium-related modules are still missing, rebuild with the provided spec instead of the one-line command so PyInstaller includes the hidden imports.
 
 ## How to Use
 

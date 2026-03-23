@@ -5,5 +5,5 @@ __pycache__/
 *.pyd
 build/
 dist/
-*.spec
+!InstagramDownloader.spec
 .DS_Store
