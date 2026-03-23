@@ -61,6 +61,6 @@ If Selenium-related modules are still missing, rebuild with the provided spec in
 
 ## Notes
 
-- The app uses `webdriver-manager` to download a matching ChromeDriver automatically.
+- The app uses Selenium Manager to find or download a matching ChromeDriver automatically.
 - Instagram changes its page structure frequently, so selectors may need updates over time.
 - Some profiles may require manual review because Instagram can limit access or load content dynamically.

@@ -2,16 +2,17 @@
 
 import os
 import queue
+import shutil
 import threading
 import time
+import tempfile
 import tkinter as tk
 from tkinter import messagebox, ttk
 
 import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
 
 class InstagramDownloaderApp:
@@ -227,11 +228,20 @@ class InstagramDownloaderApp:
 		self.last_output_dir = os.path.abspath(save_dir)
 		os.makedirs(save_dir, exist_ok=True)
 		driver = None
+		chrome_profile_dir = tempfile.mkdtemp(prefix="instagram_downloader_")
 
 		try:
 			self._queue_log(f"Saving images to: {os.path.abspath(save_dir)}")
 			self._queue_log("Starting Chrome... move the window if you want, then wait for the download to continue.")
-			driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+			options = Options()
+			options.add_argument(f"--user-data-dir={chrome_profile_dir}")
+			options.add_argument("--start-maximized")
+			options.add_argument("--disable-gpu")
+			options.add_argument("--no-first-run")
+			options.add_argument("--no-default-browser-check")
+			options.add_argument("--disable-notifications")
+			options.add_argument("--remote-allow-origins=*")
+			driver = webdriver.Chrome(options=options)
 			driver.get(f"https://www.instagram.com/{username}/")
 			time.sleep(5)
 
@@ -300,6 +310,7 @@ class InstagramDownloaderApp:
 		finally:
 			if driver is not None:
 				driver.quit()
+			shutil.rmtree(chrome_profile_dir, ignore_errors=True)
 			self.message_queue.put(("done", None))
 
 
