@@ -1,48 +1,64 @@
 # Instagram Downloader
 
-A Selenium-based Python script that opens an Instagram profile, collects post links, and downloads the images from each post into a local folder named after the target username.
+A small desktop app for downloading images from an Instagram profile. Enter a username, click start, and the app saves the images into a folder with the same name.
 
 ## Requirements
 
-- Python 3.10+
+- Windows
 - Google Chrome installed
 - Internet connection
-- A valid Instagram username to visit
+- An Instagram username you want to download from
 
-## Installation
+## Run From Source
 
-1. Create and activate a virtual environment.
-2. Install the dependencies:
+1. Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-
-1. Open [download_instagram.py](download_instagram.py).
-2. Set `USERNAME` to the Instagram profile you want to download from.
-3. Run the script:
+2. Launch the app:
 
 ```bash
 python download_instagram.py
 ```
 
-4. A small window will appear. Move the Chrome window into position, then click `Proceed`.
-5. The script scrolls the profile, finds post links, and downloads images into a folder named after the username.
+## Build a Windows App
 
-## Output
+You can package this project into a single `.exe` so other people do not need Python or the dependencies installed.
 
-Downloaded images are saved in a folder with the same name as `USERNAME`.
+1. Install PyInstaller:
+
+```bash
+pip install pyinstaller
+```
+
+2. Build the app:
+
+```bash
+pyinstaller --onefile --windowed --name InstagramDownloader download_instagram.py
+```
+
+3. The executable will be created in the `dist` folder.
+
+## How to Use
+
+1. Open the app.
+2. Type the Instagram username.
+3. Click `Start download`.
+4. The browser opens, the profile loads, and the app scrolls the page to collect posts.
+5. Downloaded images are saved in a folder named after the username.
+6. Use `Open output folder` after a run finishes to jump straight to the downloaded files.
+
+## App Features
+
+- Custom desktop window styling
+- Progress bar with post counters
+- Output folder shortcut button
+- Packaged `.exe` support with PyInstaller
 
 ## Notes
 
-- The script uses `webdriver-manager` to download a matching ChromeDriver automatically.
+- The app uses `webdriver-manager` to download a matching ChromeDriver automatically.
 - Instagram changes its page structure frequently, so selectors may need updates over time.
-- Depending on the profile, some posts may require manual review because Instagram can limit access or load content dynamically.
-
-## Dependencies
-
-- selenium
-- webdriver-manager
-- requests
+- Some profiles may require manual review because Instagram can limit access or load content dynamically.
