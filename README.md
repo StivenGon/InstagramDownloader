@@ -47,10 +47,11 @@ If Selenium-related modules are still missing, rebuild with the provided spec in
 
 1. Open the app.
 2. Type the Instagram username.
-3. Click `Start download`.
-4. The browser opens, the profile loads, and the app scrolls the page to collect posts.
-5. Downloaded images are saved in a folder named after the username.
-6. Use `Open output folder` after a run finishes to jump straight to the downloaded files.
+3. Click `Open browser`.
+4. Log in to Instagram if needed and wait until the target profile page is fully loaded.
+5. Click `Start scraping`.
+6. The app scrolls the page, collects posts, and downloads the images into a folder named after the username.
+7. Use `Open output folder` after a run finishes to jump straight to the downloaded files.
 
 ## App Features
 
