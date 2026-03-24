@@ -5,5 +5,8 @@ __pycache__/
 *.pyd
 build/
 dist/
+!dist/
+dist/*
+!dist/InstagramDownloader.exe
 !InstagramDownloader.spec
 .DS_Store

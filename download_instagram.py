@@ -312,6 +312,7 @@ class InstagramDownloaderApp:
 			self.message_queue.put(("done", None))
 
 	def _scrape_posts(self, driver):
+		os.makedirs(self.last_output_dir, exist_ok=True)
 		last_height = driver.execute_script("return document.body.scrollHeight")
 		while True:
 			driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -344,6 +345,7 @@ class InstagramDownloaderApp:
 				for source in article_sources:
 					if source and source not in downloaded_sources:
 						image_count += 1
+						os.makedirs(self.last_output_dir, exist_ok=True)
 						image_path = os.path.join(self.last_output_dir, f"{image_count}.jpg")
 						try:
 							response = requests.get(source, timeout=30)
